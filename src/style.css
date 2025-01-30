@@ -1,13 +1,37 @@
-.gamescore-loucher{
-  display: inline-block;
+.gamescore-loucher-wrapper {
   position: absolute;
   right: 50px;
   bottom: 50px;
+}
+
+.gamescore-loucher{
+  display: inline-block;
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: red;
+  background: rgb(34,40,195);
+  background: linear-gradient(180deg, rgba(34,40,195,1) 0%, rgba(20,30,150,1) 50%, rgba(10,20,100,1) 100%);
   border: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.gamescore-loucher:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.gamescore-logo {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+  background: transparent;
+}
+
+.gamescore-modal {
+  position: absolute;
+  width: 100vh;
+  height: 100vw;
+  background-color: red;
 }
 
 .tooltip {
@@ -15,17 +39,24 @@
   transform: translateX(-50%);
   background-color: white;
   color: #333;
-  top: -30px;
+  top: -40px;
   left: -150px;
   white-space: nowrap;
   text-align: center;
-  padding: 8px 12px;
+  padding: 8px 25px 8px 25px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-  opacity: 1; /* Visible by default */
-  visibility: visible; /* Ensure it's displayed */
+
+  transition:visibility 0.3s linear,opacity 0.3s linear;
+  visibility:hidden;
+  opacity:0;
+}
+
+.tooltip-visible {
+  visibility:visible;
+  opacity:1;
 }
 
 .tooltip-cross {
@@ -52,10 +83,55 @@
   content: "\00d7";
   font-size: 18px;
   color: gray;
-
 }
 
 .tooltip-cross:hover {
   background: #f3f3f3;
 }
+
+
+/* ---- MODAL --- */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 800px;
+  height: 800px;
+  transform: translateY(-20px);
+  transition: transform 0.3s ease-in-out;
+}
+
+.modal-content iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal.active .modal-content {
+  transform: translateY(0);
+}
+
+
 
